@@ -3,7 +3,6 @@ package com.example.skincancer
 import android.content.Context
 import com.example.skincancer.model.SkinCancerEntity
 import com.example.skincancer.viewmodel.SkinViewModel
-import java.lang.Exception
 import java.util.regex.Pattern
 
 class SkinCancerBean(c: Context) {
