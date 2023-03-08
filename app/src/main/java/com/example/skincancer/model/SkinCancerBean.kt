@@ -46,7 +46,9 @@ class SkinCancerBean(c: Context) {
 	        
 	        errors.clear()
 	        
-          if (id != "") {}
+          if (id != "") {
+	  //id
+	  }
 	         else {
 	               errors.add("id cannot be empty")
 	         }
@@ -54,7 +56,9 @@ class SkinCancerBean(c: Context) {
 	         else {
 	               errors.add("dates should written as \"DD-MM-YYYY\"")
 	         }
-          if (images != "") {}
+          if (images != "") {
+	  //id
+	  }
 	         else {
 	               errors.add("images cannot be empty")
 	         }
@@ -79,15 +83,21 @@ class SkinCancerBean(c: Context) {
 			if (!allSkinCancerids.contains(id)) {
 				errors.add("The id is not exist")
 		    }
-          if (id != "") {}
+          if (id != "") {
+	  //id
+	  }
 	         else {
 	               errors.add("id cannot be empty")
 	         }
-            if (validateDate(dates)) {}
+            if (validateDate(dates)) {
+	    //id
+	    }
 	                else {
 	                    errors.add("dates should written as \"DD-MM-YYYY\"")
 	                }
-          if (images != "") {}
+          if (images != "") {
+	  //id
+	  }
 	         else {
 	               errors.add("images cannot be empty")
 	         }
