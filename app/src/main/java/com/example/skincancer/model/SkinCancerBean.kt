@@ -16,6 +16,7 @@ class SkinCancerBean(c: Context) {
     private var outcome = ""
 
     private var errors = ArrayList<String>()
+    private var checkParameter = "is not exist"
 
     fun setId(idx: String) {
 	 id = idx
@@ -52,7 +53,9 @@ class SkinCancerBean(c: Context) {
 	         else {
 	               errors.add("id cannot be empty")
 	         }
-	            if (validateDate(dates)) {}
+	            if (validateDate(dates)) {
+		    //ok
+		    }
 	         else {
 	               errors.add("dates should written as \"DD-MM-YYYY\"")
 	         }
@@ -81,7 +84,7 @@ class SkinCancerBean(c: Context) {
        errors.clear()
 			
 			if (!allSkinCancerids.contains(id)) {
-				errors.add("The id is not exist")
+				errors.add("id" + checkParameter)
 		    }
           if (id != "") {
 	  //id
@@ -113,7 +116,7 @@ class SkinCancerBean(c: Context) {
    fun isDeleteSkinCancerError(allSkinCancerids: List<String>): Boolean {
         errors.clear()
 			 if (!allSkinCancerids.contains(id)) {
-			    errors.add("The id is not exist")
+			    errors.add("id" + checkParameter)
         }
         return errors.size > 0
 		}    
@@ -121,7 +124,7 @@ class SkinCancerBean(c: Context) {
    	fun isSearchSkinCancerError(allSkinCancerdatess: List<String>): Boolean {
         errors.clear()
         if (!allSkinCancerdatess.contains(dates)) {
-            errors.add("The dates is not exist")
+            errors.add("dates" + checkParameter)
         }
         return errors.size > 0
     }
@@ -129,7 +132,7 @@ class SkinCancerBean(c: Context) {
 		fun isSearchSkinCancerIdError(allSkinCancerIds: List<String>): Boolean {
     	   errors.clear()
    	       if (!allSkinCancerIds.contains(id)) {
-    	       errors.add("The id is not exist")
+    	       errors.add("id" + checkParameter)
     	   }
            return errors.size > 0
     }
