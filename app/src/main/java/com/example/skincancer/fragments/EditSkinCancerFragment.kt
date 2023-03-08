@@ -88,9 +88,9 @@ lateinit var buttonCapture: Button
 
 		editSkinCancerSpinner = root.findViewById(R.id.crudSkinCancerSpinner)
 
-		model.allSkinCancerIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { SkinCancerid ->
-			SkinCancerid.let {
-				allSkinCancerids = SkinCancerid
+		model.allSkinCancerIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { skinCancerId ->
+			skinCancerId.let {
+				allSkinCancerids = skinCancerId
 				val editSkinCancerAdapter =
 					ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allSkinCancerids)
 				editSkinCancerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
