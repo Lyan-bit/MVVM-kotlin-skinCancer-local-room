@@ -44,9 +44,7 @@ class ListSkinFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.listskin_layout, container, false)
         model = SkinViewModel.getInstance(myContext)
-       // Log.i("test", model.listSkin().toString())
-      //  val data = arguments
-
+        
         if (view is RecyclerView) {
             val context = view.getContext()
             if (mColumnCount <= 1) {
