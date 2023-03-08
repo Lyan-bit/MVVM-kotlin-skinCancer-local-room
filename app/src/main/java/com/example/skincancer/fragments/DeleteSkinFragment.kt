@@ -53,9 +53,9 @@ class DeleteSkinFragment : Fragment(), View.OnClickListener, AdapterView.OnItemS
 		idTextView = root.findViewById(R.id.deleteSkinidTextView)
 		deleteskinSpinner = root.findViewById(R.id.deleteSkinSpinner)
 
-		model.allSkinCancerIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { SkinCancerid ->
-			SkinCancerid.let {
-				allSkinids = SkinCancerid
+		model.allSkinCancerIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { skinCancerId ->
+			skinCancerId.let {
+				allSkinids = skinCancerId
 				val deleteSkinCancerAdapter =
 					ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allSkinids)
 				deleteSkinCancerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
