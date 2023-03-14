@@ -152,13 +152,13 @@ lateinit var buttonCapture: Button
 
 	when (v.id) {
 		R.id.crudSkinCancerSearch -> {
-			crudSkinCancerSearch()
+			editSkinCancerSearch()
 		}			
 		R.id.crudSkinCancerOK -> {
-			crudSkinCancerOK()
+			editSkinCancerOK()
 		}
 		R.id.crudSkinCancerCancel -> {
-			crudSkinCancerCancel()
+			editSkinCancerCancel()
 		}
 		R.id.buttonPickPhoto -> {
 			onPickImage()
@@ -169,7 +169,7 @@ lateinit var buttonCapture: Button
 	  }
     }
     
-	private fun crudSkinCancerSearch() {
+	private fun editSkinCancerSearch() {
 		idData = idTextField.text.toString()
 		skinCancerBean.setId(idData)
 		
@@ -199,7 +199,7 @@ lateinit var buttonCapture: Button
 		}
 	}
 
-	private fun crudSkinCancerOK() {
+	private fun editSkinCancerOK() {
 	if (imagesImageView.getDrawable() != null) {
 			//Convert image to bitmap
 			val bitmap = (imagesImageView.getDrawable() as BitmapDrawable).getBitmap()
@@ -233,7 +233,7 @@ lateinit var buttonCapture: Button
 			}
 	}
 
-	private fun crudSkinCancerCancel() {
+	private fun editSkinCancerCancel() {
 		skinCancerBean.resetData()
 		idTextField.setText("")
 		datesTextField.setText("")
@@ -241,46 +241,7 @@ lateinit var buttonCapture: Button
 		outcomeTextView.text = "" 
 	}
 	
-		fun onTakeImage() {
-		// create Intent to take a picture and return control to the calling application
-		val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-		// Create a File reference for future access
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				photoFile = getPhotoFileUri(SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) + ".jpg")
-			}
-
-			// wrap File object into a content provider
-		// required for API >= 24
-		// See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-		val fileProvider = FileProvider.getUriForFile(
-			myContext, "com.example.skincancer",
-			photoFile)
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
-
-		// If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-		// So as long as the result is not null, it's safe to use the intent.
-		if (intent.resolveActivity(myContext.getPackageManager()) != null) {
-			// Start the image capture intent to take photo
-			activity?.startActivityForResult(intent, CAPTUREIMAGEACTIVITYREQUESTCODE)
-		}
-	}
-
-	// Returns the File for a photo stored on disk given the fileName
-	fun getPhotoFileUri(fileName: String): File {
-		// Get safe storage directory for photos
-		// Use `getExternalFilesDir` on Context to access package-specific directories.
-		// This way, we don't need to request external read/write runtime permissions.
-		val mediaStorageDir: File =
-			File(myContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), LOGTAG)
-
-		// Create the storage directory if it does not exist
-		if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-			Log.d(LOGTAG, "failed to create directory")
-		}
-
-		// Return the file target for the photo based on filename
-		return File(mediaStorageDir.path + File.separator + fileName)
-	}
+		
 
 	/**
 	 * getCapturedImage():
@@ -368,6 +329,47 @@ lateinit var buttonCapture: Button
 			e.printStackTrace()
 		}
 		return image
+	}
+	
+	fun onTakeImage() {
+		// create Intent to take a picture and return control to the calling application
+		val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+		// Create a File reference for future access
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				photoFile = getPhotoFileUri(SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) + ".jpg")
+			}
+
+			// wrap File object into a content provider
+		// required for API >= 24
+		// See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
+		val fileProvider = FileProvider.getUriForFile(
+			myContext, "com.example.skincancer",
+			photoFile)
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+
+		// If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+		// So as long as the result is not null, it's safe to use the intent.
+		if (intent.resolveActivity(myContext.getPackageManager()) != null) {
+			// Start the image capture intent to take photo
+			activity?.startActivityForResult(intent, CAPTUREIMAGEACTIVITYREQUESTCODE)
+		}
+	}
+
+	// Returns the File for a photo stored on disk given the fileName
+	fun getPhotoFileUri(fileName: String): File {
+		// Get safe storage directory for photos
+		// Use `getExternalFilesDir` on Context to access package-specific directories.
+		// This way, we don't need to request external read/write runtime permissions.
+		val mediaStorageDir: File =
+			File(myContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), LOGTAG)
+
+		// Create the storage directory if it does not exist
+		if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
+			Log.d(LOGTAG, "failed to create directory")
+		}
+
+		// Return the file target for the photo based on filename
+		return File(mediaStorageDir.path + File.separator + fileName)
 	}
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
