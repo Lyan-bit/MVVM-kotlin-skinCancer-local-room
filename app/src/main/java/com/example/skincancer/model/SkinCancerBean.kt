@@ -65,7 +65,7 @@ class SkinCancerBean(c: Context) {
 	               errors.add("images cannot be empty")
 	         }
 	
-	        return errors.size > 0
+	        return errors.isNotEmpty()
 	    }
 	    
 	    suspend fun createSkinCancer() {
